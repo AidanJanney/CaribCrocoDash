@@ -1,6 +1,7 @@
 import xarray as xr
 import regional_mom6 as rm6
 from pathlib import Path 
+from datetime import datetime
 import sys
 from CrocoDash.data_access import glorys as gl
 from CrocoDash.data_access import driver as dv
@@ -55,7 +56,7 @@ def regrid_glorys_pieces(
         for file_name in file_list:
             
             date = file_name.split(".")[-2]
-            start_date = date.split("_")[0]
+            start_date = datetime.strptime(date.split("_")[0], "%Y%m%d").strftime("%Y-%m-%d %H:%M:%S")
             
             seg = rm6.segment(
                 hgrid=hgrid,
@@ -73,7 +74,7 @@ def regrid_glorys_pieces(
             seg.regrid_velocity_tracers()
     
     
-hgrid_path = "/glade/work/ajanney/CrocoDash_Input/CrocCaribDefault_Coarse/ocnice/ocean_hgrid_CrocCaribDefault_729cf6.nc"
+hgrid_path = "/glade/work/ajanney/CrocoDash_Input/CrocCaribDefault/ocnice/ocean_hgrid_CrocCaribDefault_9419eb.nc"
 raw_input_dir="/glade/work/ajanney/CaribCrocoDash/get_carib_glorys/raw_glorys_data"
 output_dir="/glade/work/ajanney/CaribCrocoDash/get_carib_glorys/coarse_regridded_glorys_data"
 

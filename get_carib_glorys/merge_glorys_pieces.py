@@ -23,7 +23,7 @@ def merge_glorys_pieces(
         boundary_path = os.path.join(input_dir,f"forcing_obc_segment_00{key_num}*")
         
         logger.info(f"Opening segment_00{key_num} files")
-        dataset_merged=xr.open_mfdataset(boundary_path,decode_times = False, combine = "nested", concat_dim="time",coords='minimal')
+        dataset_merged=xr.open_mfdataset(boundary_path, combine = "nested", concat_dim="time",coords='minimal')
         
         output_path = os.path.join(output_dir,f"forcing_obc_segment_00{key_num}.nc")
         dataset_merged.to_netcdf(output_path, format="netcdf4")

@@ -3,6 +3,13 @@ import os
 ## Testing with Panama Domain Because it's small
 # --minimum-longitude 261.26 --maximum-longitude 324.74 --minimum-latitude -6.24 --maximum-latitude 32.24
 
+'''
+xstart=261.5, # 261.5° E or 98.5° W 
+lenx=63, # 35.5° W
+ystart=-6, # 6° S
+leny=38, # 32° N
+'''
+
 lat_min = -6.24
 lat_max = 32.24
 lon_min = 261.26
