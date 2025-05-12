@@ -11,7 +11,7 @@ from CrocoDash.topo import Topo
 topo = Topo.from_topo_file(
     grid = grid,
     topo_file_path="/glade/work/ajanney/CaribCrocoDash/CrocCarib_Gio_Input/topo.carib_012v1.SRTM15_V2.4.SmL2.0_C2.0_edited_v3.nc",
-    min_depth=10,
+    min_depth=9.5,
 )
 
 from CrocoDash.vgrid import VGrid
@@ -50,8 +50,6 @@ case = Case(
 start_date_iter = "2000-01-01 00:00:00"
 end_date_iter = "2021-02-01 00:00:00"
 
-case.override = False
-
 case.configure_forcings(
     date_range = [start_date_iter, end_date_iter],
     tidal_constituents = ['M2', 'S2', 'N2', 'K2', 'K1', 'O1', 'P1', 'Q1', 'MM', 'MF'],
@@ -60,5 +58,10 @@ case.configure_forcings(
     tpxo_velocity_filepath = "/glade/work/ajanney/CrocoDashData/inputs/tidal_data/u_tpxo9.v1.nc" 
     # original: "/glade/u/home/manishrv/manish_scratch_symlink/inputs_rm6/tidal_data/u_tpxo9.v1.nc"
 )
+
+import subprocess
+
+for key in ['ic', 'east', 'west', 'south', 'north']:
+    subprocess.run(['cp',f'/glade/work/ajanney/CrocoDash_Input/glorys_CARIB_testing/{key}_unprocessed.nc','/glade/work/ajanney/CrocoDash_Input/CrocCaribGio/glorys'])
 
 case.process_forcings()
